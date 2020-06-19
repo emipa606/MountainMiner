@@ -5,6 +5,7 @@
   <author>erdelf</author>
   <url>https://github.com/emipa606/MountainMiner</url>
   <supportedVersions>
+    <li>1.0</li>
     <li>1.1</li>
   </supportedVersions>
   <modDependencies />
