@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Mountain Miner (Continued)</name>
+  <packageId>Mlie.MountainMiner</packageId>
+  <author>erdelf</author>
+  <url>https://github.com/emipa606/MountainMiner</url>
+  <supportedVersions>
+    <li>1.1</li>
+  </supportedVersions>
+  <modDependencies />
+  <loadAfter />
+  <description>Update of erdelfs mod for RimWorld 1.1
+https://steamcommunity.com/sharedfiles/filedetails/?id=794450222
+Based on of LoonyLadles update
+https://steamcommunity.com/sharedfiles/filedetails/?id=1699107197
+
+[img]https://i.imgur.com/GYswkZ7.png[/img]
+
+Support-chat:
+https://invite.gg/mlie
+
+Non-steam version:
+https://github.com/emipa606/MountainMiner
+	
+- Removed the interaction-cell since it was not used anyway
+
+--- LoonyLadles Description ---
+This mod adds a Mountain Miner.
+The mountain miner is a hand-operated machine used to mine out the area above the tunneling level.
+Allows for rock roof removal and produces chunks in the process.
+
+Made by erdelf, updated by LoonyLadle for 1.0.
+
+/This is a reupload of https://steamcommunity.com/sharedfiles/filedetails/?id=1402978842 as it vanished. This only exists so people who were using it can continue to use their saves with no errors. This will be taken down at the request of the original author or return of the mod.
+
+--- Original Description ---
+This mod adds a Mountain Miner.
+The mountain miner is a hand-operated machine used to mine out the area above the tunneling level.
+Allows for rock roof removal and produces chunks in the process.
+
+Japanese Translation by Proxyer .
+
+A17 will be the last version.</description>
+</ModMetaData>
