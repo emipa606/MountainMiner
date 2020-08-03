@@ -48,7 +48,7 @@ namespace MountainMiner
             for (int i = 0; i < 9; i++)
             {
                 IntVec3 intVec = this.Position + GenRadial.RadialPattern[i];
-                if (intVec.InBounds(this.Map))
+                if (intVec.InBounds(this.Map) && this.Map.roofGrid.RoofAt(intVec) == RoofDefOf.RoofRockThick)
                 {
                     this.Map.roofGrid.SetRoof(intVec, RoofDefOf.RoofRockThin);
                 }
