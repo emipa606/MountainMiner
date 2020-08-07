@@ -36,7 +36,7 @@ namespace MountainMiner
 
         public void Drill(float miningPoints)
         {
-            this.progress += miningPoints;
+            this.progress += (miningPoints * GetRoofFactor());
             if (UnityEngine.Random.Range(0, 1000) == 0)
             {
                 ProduceLump();
@@ -48,7 +48,7 @@ namespace MountainMiner
             for (int i = 0; i < 9; i++)
             {
                 IntVec3 intVec = this.Position + GenRadial.RadialPattern[i];
-                if (intVec.InBounds(this.Map))
+                if (intVec.InBounds(this.Map) && this.Map.roofGrid.RoofAt(intVec) == RoofDefOf.RoofRockThick)
                 {
                     this.Map.roofGrid.SetRoof(intVec, RoofDefOf.RoofRockThin);
                 }
@@ -113,5 +113,18 @@ namespace MountainMiner
                 ": ",
                 this.Progress.ToStringPercent()
             });
+        private float GetRoofFactor()
+        {
+            int tiles = 0;
+            for (int i = 0; i < 9; i++)
+            {
+                IntVec3 intVec = this.Position + GenRadial.RadialPattern[i];
+                if (intVec.InBounds(this.Map) && this.Map.roofGrid.RoofAt(intVec) != null && this.Map.roofGrid.RoofAt(intVec).isThickRoof)
+                    tiles++;
+            }
+            if (tiles == 0)
+                tiles++;
+            return (9 / tiles);
+        }
     }
 }
