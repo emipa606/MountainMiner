@@ -36,7 +36,7 @@ namespace MountainMiner
 
         public void Drill(float miningPoints)
         {
-            this.progress += miningPoints;
+            this.progress += (miningPoints * GetRoofFactor());
             if (UnityEngine.Random.Range(0, 1000) == 0)
             {
                 ProduceLump();
@@ -64,6 +64,20 @@ namespace MountainMiner
                 GenPlace.TryPlaceThing(thing, this.InteractionCell, this.Map, ThingPlaceMode.Near);
             }
             return;
+        }
+
+        private float GetRoofFactor()
+        {
+            int tiles = 0;
+            for (int i = 0; i < 9; i++)
+            {
+                IntVec3 intVec = Position + GenRadial.RadialPattern[i];
+                if (intVec.InBounds(Map) && Map.roofGrid.RoofAt(intVec) != null && Map.roofGrid.RoofAt(intVec).isThickRoof)
+                    tiles++;
+            }
+            if (tiles == 0)
+                tiles++;
+            return 9 / tiles;
         }
 
         public bool TryGetNextResource(out ThingDef resDef, out IntVec3 cell)
