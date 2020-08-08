@@ -25,7 +25,7 @@ namespace MountainMiner
         {
             Map visibleMap = Find.CurrentMap; //:: was VisibleMap; uncertain if replacement correct
 
-            foreach (IntVec3 current in from cur in visibleMap.AllCells where visibleMap.roofGrid.RoofAt(cur) != null && visibleMap.roofGrid.RoofAt(cur).isThickRoof select cur)
+            foreach (IntVec3 current in from cur in visibleMap.AllCells where visibleMap.roofGrid.RoofAt(cur) != null && visibleMap.roofGrid.RoofAt(cur).isThickRoof && !visibleMap.fogGrid.IsFogged(cur) select cur)
                 CellRenderer.RenderCell(current);
         }
     }
