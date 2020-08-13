@@ -53,6 +53,8 @@ namespace MountainMiner
                     this.Map.roofGrid.SetRoof(intVec, RoofDefOf.RoofRockThin);
                 }
             }
+
+            //add message here?
             this.Progress = 0f;
         }
 
@@ -68,28 +70,26 @@ namespace MountainMiner
 
         public bool TryGetNextResource(out ThingDef resDef, out IntVec3 cell)
         {
+            //List<IntVec3> coordList = new List<IntVec3>();
             for (int i = 0; i < 9; i++)
             {
                 IntVec3 intVec = this.Position + GenRadial.RadialPattern[i];
-                if (intVec.InBounds(this.Map))
+                if (intVec.InBounds(this.Map) && this.Map.roofGrid.RoofAt(intVec) != null && this.Map.roofGrid.RoofAt(intVec).isThickRoof)
                 {
-                    ThingDef thingDef = DefDatabase<ThingDef>.GetNamed("Chunk" + this.Map.terrainGrid.TerrainAt(intVec).defName.Split('_')[0], false);
+                    ThingDef thingDef = DeepDrillUtility.GetBaseResource(this.Map, intVec);
                     //GenStep_RocksFromGrid.RockDefAt(intVec);
-                    if (thingDef == null)
+                    if (thingDef != null)
                     {
-                        if (!Find.World.NaturalRockTypesIn(this.Map.areaManager.Home.ID).TryRandomElement(out thingDef))
-                            thingDef = ThingDef.Named("Sandstone");
-                        thingDef = ThingDef.Named("Chunk" + thingDef);
+                        resDef = thingDef;
+                        cell = intVec;
+                        return true;
                     }
-                    //Log.Message(GenStep_RocksFromGrid.RockDefAt(intVec).defName);
-
-                    resDef = thingDef;
-                    cell = intVec;
-                    return true;
                 }
             }
             resDef = null;
             cell = IntVec3.Invalid;
+
+            // or add a message here? the miner should be done at this point or something broke, but there should be no new lumps...
             return false;
         }
 
