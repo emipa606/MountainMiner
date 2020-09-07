@@ -37,9 +37,10 @@ namespace MountainMiner
                 pawn.skills.Learn(SkillDefOf.Mining, 0.125f);
                 if (this.Comp.Progress>=1)
                 {
-                    this.Comp.DrillWorkDone(pawn);
-                    EndJobWith(JobCondition.Succeeded);
-                    pawn.records.Increment(RecordDefOf.CellsMined);
+                    if (this.Comp.DrillWorkDone(pawn)) {
+                        EndJobWith(JobCondition.Succeeded);
+                        pawn.records.Increment(RecordDefOf.CellsMined);
+                    }
                 }
             };
             mine.WithEffect(this.TargetThingA.def.repairEffect, TargetIndex.A);
