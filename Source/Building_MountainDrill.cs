@@ -1,18 +1,16 @@
 ﻿using RimWorld;
-using RimWorld.Planet;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Verse;
 
 namespace MountainMiner
 {
-#pragma warning disable IDE1006 // Naming Styles
     class Building_MountainDrill : Building
-#pragma warning restore IDE1006 // Naming Styles
     {
         private CompPowerTrader powerComp;
+        private int currentTile = -1;
+        private ThingDef currentChunk = null;
+        private ThingDef tileChunk;
+        private ThingDef bottomChunk;
 
         private float progress;
 
@@ -32,6 +30,8 @@ namespace MountainMiner
         {
             base.ExposeData();
             Scribe_Values.Look(ref this.progress, "MountainProgress", 0f);
+            Scribe_Values.Look(ref this.currentTile, "Tile");
+            Scribe_Defs.Look(ref this.currentChunk, "chunk");
         }
 
         public void Drill(float miningPoints)
@@ -43,17 +43,16 @@ namespace MountainMiner
             }
         }
 
-        public void DrillWorkDone(Pawn driller)
+        public bool DrillWorkDone(Pawn driller)
         {
-            for (int i = 0; i < 9; i++)
+            IntVec3 intVec = this.Position + GenRadial.RadialPattern[currentTile];
+            if (intVec.InBounds(this.Map) && this.Map.roofGrid.RoofAt(intVec) == RoofDefOf.RoofRockThick)
             {
-                IntVec3 intVec = this.Position + GenRadial.RadialPattern[i];
-                if (intVec.InBounds(this.Map) && this.Map.roofGrid.RoofAt(intVec) == RoofDefOf.RoofRockThick)
-                {
-                    this.Map.roofGrid.SetRoof(intVec, RoofDefOf.RoofRockThin);
-                }
+                this.Map.roofGrid.SetRoof(intVec, RoofDefOf.RoofRockThin);
             }
             this.Progress = 0f;
+
+            return !RoofPresent();
         }
 
         private void ProduceLump()
@@ -85,25 +84,67 @@ namespace MountainMiner
             for (int i = 0; i < 9; i++)
             {
                 IntVec3 intVec = this.Position + GenRadial.RadialPattern[i];
-                if (intVec.InBounds(this.Map))
+                if (intVec.InBounds(this.Map) && this.Map.roofGrid.RoofAt(intVec) != null && this.Map.roofGrid.RoofAt(intVec) == RoofDefOf.RoofRockThick)
                 {
-                    ThingDef thingDef = DefDatabase<ThingDef>.GetNamed("Chunk" + this.Map.terrainGrid.TerrainAt(intVec).defName.Split('_')[0], false);
-                    //GenStep_RocksFromGrid.RockDefAt(intVec);
-                    if (thingDef == null)
+                    TerrainDef terrain = this.Map.terrainGrid.TerrainAt(intVec);
+                    if (terrain != null)
                     {
-                        if (!Find.World.NaturalRockTypesIn(this.Map.areaManager.Home.ID).TryRandomElement(out thingDef))
-                            thingDef = ThingDef.Named("Sandstone");
-                        thingDef = ThingDef.Named("Chunk" + thingDef);
+                        String[] terrainNameArray = terrain.defName.Split('_');
+                        if (terrain.scatterType == "Rocky" && terrainNameArray.Length == 2)
+                        {
+                            ThingDef thingDef = DefDatabase<ThingDef>.GetNamed("Chunk" + terrainNameArray[0], false);
+                            if (thingDef != null)
+                            {
+                                tileChunk = thingDef;
+                            }
+                        }
                     }
-                    //Log.Message(GenStep_RocksFromGrid.RockDefAt(intVec).defName);
+                    terrain = this.Map.terrainGrid.UnderTerrainAt(intVec);
+                    if (terrain != null)
+                    {
+                        String[] terrainNameArray = terrain.defName.Split('_');
+                        if (terrain.scatterType == "Rocky" && terrainNameArray.Length == 2)
+                        {
+                            ThingDef thingDef = DefDatabase<ThingDef>.GetNamed("Chunk" + terrainNameArray[0], false);
+                            if (thingDef != null)
+                            {
+                                bottomChunk = thingDef;
+                            }
+                        }
+                    }
 
-                    resDef = thingDef;
-                    cell = intVec;
-                    return true;
+                    if (tileChunk != null)
+                    {
+                        resDef = tileChunk;
+                        cell = intVec;
+                        currentChunk = tileChunk;
+                        return true;
+                    }
+                    else if (bottomChunk != null)
+                    {
+                        resDef = bottomChunk;
+                        cell = intVec;
+                        currentChunk = bottomChunk;
+                        return true;
+                    }
+                    else
+                    {
+                        ThingDef baseRes = DeepDrillUtility.GetBaseResource(this.Map, intVec);
+                        if (baseRes != null)
+                        {
+                            resDef = baseRes;
+                            cell = intVec;
+                            currentChunk = baseRes;
+                            return true;
+                        }
+                    }
                 }
             }
             resDef = null;
             cell = IntVec3.Invalid;
+            currentChunk = null;
+
+            // or add a message here? the miner should be done at this point or something broke, but there should be no new lumps...
             return false;
         }
 
@@ -114,9 +155,13 @@ namespace MountainMiner
             for (int i = 0; i < 9; i++)
             {
                 IntVec3 intVec = this.Position + GenRadial.RadialPattern[i];
-                if (intVec.InBounds(this.Map) && this.Map.roofGrid.RoofAt(intVec) != null && this.Map.roofGrid.RoofAt(intVec).isThickRoof)
+                if (intVec.InBounds(this.Map) && this.Map.roofGrid.RoofAt(intVec) != null && this.Map.roofGrid.RoofAt(intVec) == RoofDefOf.RoofRockThick)
+                {
+                    currentTile = i;
                     return true;
+                }
             }
+            currentTile = -1;
             return false;
         }
 

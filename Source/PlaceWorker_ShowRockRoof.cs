@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using RimWorld;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -13,7 +14,7 @@ namespace MountainMiner
                 for (int i = 0; i < 9; i++)
                 {
                     IntVec3 intVec = loc + GenRadial.RadialPattern[i];
-                    if (intVec.InBounds(map) && map.roofGrid.RoofAt(intVec) != null && map.roofGrid.RoofAt(intVec).isThickRoof)
+                    if (intVec.InBounds(map) && map.roofGrid.RoofAt(intVec) != null && map.roofGrid.RoofAt(intVec) == RoofDefOf.RoofRockThick)
                             return true;
                 }
                 return new AcceptanceReport("Must be placed under overhead Mountain");
@@ -25,7 +26,7 @@ namespace MountainMiner
         {
             Map visibleMap = Find.CurrentMap; //:: was VisibleMap; uncertain if replacement correct
 
-            foreach (IntVec3 current in from cur in visibleMap.AllCells where visibleMap.roofGrid.RoofAt(cur) != null && visibleMap.roofGrid.RoofAt(cur).isThickRoof select cur)
+            foreach (IntVec3 current in from cur in visibleMap.AllCells where visibleMap.roofGrid.RoofAt(cur) != null && visibleMap.roofGrid.RoofAt(cur) == RoofDefOf.RoofRockThick && !visibleMap.fogGrid.IsFogged(cur) select cur)
                 CellRenderer.RenderCell(current);
         }
     }
