@@ -11,36 +11,46 @@
   </supportedVersions>
   <modDependencies />
   <loadAfter />
-  <description>Update of erdelfs mod
+  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+Update of erdelfs mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=794450222
 Based on of LoonyLadles update
 https://steamcommunity.com/sharedfiles/filedetails/?id=1699107197
 
-[img]https://i.imgur.com/GYswkZ7.png[/img]
-
-Support-chat:
-https://invite.gg/mlie
-
-Non-steam version:
-https://github.com/emipa606/MountainMiner
-	
 - Removed the interaction-cell since it was not used anyway
+- Added relative speed of mining based on the amount of overhead mountain around the drill, thanks HR-SP
+- The chunk extracted will now match the stone-type of the roof, thanks HR-SP
+- Added setting for how often chunks will spawn
 
---- LoonyLadles Description ---
+[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+
+[table]
+	[tr]
+		[td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+		[td][url=https://github.com/emipa606/MountainMiner][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+	[/tr]
+[/table]
+	
+[img]https://i.imgur.com/NOW7jU1.png[/img]
+
 This mod adds a Mountain Miner.
-The mountain miner is a hand-operated machine used to mine out the area above the tunneling level.
+The mountain miner is a hand-operated machine used to mine out the area above the tunneling level. 
 Allows for rock roof removal and produces chunks in the process.
 
-Made by erdelf, updated by LoonyLadle for 1.0.
+Japanese Translation by [url=http://steamcommunity.com/workshop/filedetails/?id=770291879] Proxyer [/url].
 
-/This is a reupload of https://steamcommunity.com/sharedfiles/filedetails/?id=1402978842 as it vanished. This only exists so people who were using it can continue to use their saves with no errors. This will be taken down at the request of the original author or return of the mod.
+A17 will be the last version.
 
---- Original Description ---
-This mod adds a Mountain Miner.
-The mountain miner is a hand-operated machine used to mine out the area above the tunneling level.
-Allows for rock roof removal and produces chunks in the process.
 
-Japanese Translation by Proxyer .
-
-A17 will be the last version.</description>
+[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[list]
+[*] See if the the error persists if you just have this mod and its requirements active.
+[*] If not, try adding your other mods until it happens again.
+[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] and command Ctrl+F12
+[*] For best support, please use the Discord-channel for error-reporting.
+[*] Do not report errors by making a discussion-thread, I get no notification of that.
+[*] If you have the solution for a problem, please post it to the GitHub repository.
+[/list]
+</description>
 </ModMetaData>
+
