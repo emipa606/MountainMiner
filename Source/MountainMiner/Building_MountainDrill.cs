@@ -87,7 +87,7 @@ namespace MountainMiner
                 tiles++;
             }
 
-            return 9 / tiles;
+            return 9 / (float) tiles;
         }
 
         public bool TryGetNextResource(out ThingDef resDef, out IntVec3 cell)
