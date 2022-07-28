@@ -1,6 +1,6 @@
 # MountainMiner
 
-![Image](https://i.imgur.com/WAEzk68.png)
+![Image](https://i.imgur.com/buuPQel.png)
 
 Update of erdelfs mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=794450222
@@ -12,19 +12,10 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1699107197
 - The chunk extracted will now match the stone-type of the roof, thanks HR-SP
 - Added setting for how often chunks will spawn
 
-![Image](https://i.imgur.com/7Gzt3Rg.png)
+![Image](https://i.imgur.com/pufA0kM.png)
 
-
-[table]
-	[tr]
-		[td]https://invite.gg/Mlie]![Image](https://i.imgur.com/zdzzBrc.png)
-[/td]
-		[td]https://github.com/emipa606/MountainMiner]![Image](https://i.imgur.com/kTkpTOE.png)
-[/td]
-	[/tr]
-[/table]
 	
-![Image](https://i.imgur.com/NOW7jU1.png)
+![Image](https://i.imgur.com/Z4GOv8H.png)
 
 
 This mod adds a Mountain Miner.
@@ -36,7 +27,7 @@ Japanese Translation by http://steamcommunity.com/workshop/filedetails/?id=77029
 A17 will be the last version.
 
 
-![Image](https://i.imgur.com/Rs6T6cr.png)
+![Image](https://i.imgur.com/PwoNOj4.png)
 
 
 

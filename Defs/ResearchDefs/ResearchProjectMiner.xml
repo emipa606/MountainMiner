@@ -5,6 +5,6 @@
     <label>mountain mining</label>
     <description>Allows colonists to build the Mountain Miner, which allows you to clear mountain roofs</description>
     <baseCost>1000</baseCost>
-    <techLevel>Neolithic</techLevel>
+    <techLevel>Industrial</techLevel>
   </ResearchProjectDef>
 </Defs>
