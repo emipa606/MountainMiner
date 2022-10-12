@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MM.CurrentModVersion>Installed mod-version: {0}</MM.CurrentModVersion>
+  <MM.SpawnTime>Chunk spawntime multiplier</MM.SpawnTime>
+  <MM.TimeBetween>Time between chunks multiplier: {0}</MM.TimeBetween>
+  <MM.TimeBetweenTooltip>The value for how long time between chunks are spawned by the miner is multiplied with this value</MM.TimeBetweenTooltip>
+</LanguageData>

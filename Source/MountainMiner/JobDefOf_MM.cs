@@ -1,11 +1,10 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace MountainMiner
+namespace MountainMiner;
+
+[DefOf]
+public static class JobDefOf_MM
 {
-    [DefOf]
-    public static class JobDefOf_MM
-    {
-        public static JobDef OperateHighDrill;
-    }
+    public static JobDef OperateHighDrill;
 }
