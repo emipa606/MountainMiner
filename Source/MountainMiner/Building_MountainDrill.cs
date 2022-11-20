@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using UnityEngine;
 using Verse;
 
 namespace MountainMiner;
@@ -39,7 +38,7 @@ internal class Building_MountainDrill : Building
         progress += miningPoints * GetRoofFactor();
         var multiplier = LoadedModManager.GetMod<MountainMinerMod>().GetSettings<MountainMinerSettings>()
             .ChunkMultiplier;
-        if (Random.Range(0, 1000 * multiplier) < 1)
+        if (Rand.Range(0, 1000 * multiplier) < 1)
         {
             ProduceLump();
         }
