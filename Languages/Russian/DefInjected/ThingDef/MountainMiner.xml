@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-	<ManualMountainMiner.label>горный бур</ManualMountainMiner.label>
-	<ManualMountainMiner.description>Управляемая машина, используемая для бурения горной породы над уровнем туннелей.\nПозволяет убирать толщу горной породы.\nПроизводит обломки.</ManualMountainMiner.description>
+  <ManualMountainMiner.label>горный бур</ManualMountainMiner.label>
+  <ManualMountainMiner.description>Управляемая машина, используемая для бурения горной породы над уровнем туннелей.\nПозволяет убирать толщу горной породы.\nПроизводит обломки.</ManualMountainMiner.description>
 </LanguageData>
