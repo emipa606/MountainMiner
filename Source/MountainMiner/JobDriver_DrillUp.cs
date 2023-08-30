@@ -28,7 +28,8 @@ internal class JobDriver_DrillUp : JobDriver
         {
             var mineActor = mine.actor;
             Comp.Drill(mineActor.GetStatValue(StatDefOf.MiningSpeed) / ticks);
-            mineActor.skills.Learn(SkillDefOf.Mining, 0.125f);
+            mineActor.skills?.Learn(SkillDefOf.Mining, 0.125f);
+
             if (!(Comp.Progress >= 1))
             {
                 return;
