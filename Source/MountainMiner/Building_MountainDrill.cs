@@ -59,7 +59,7 @@ internal class Building_MountainDrill : Building
 
     private void ProduceLump()
     {
-        if (!TryGetNextResource(out var thingDef, out _))
+        if (!TryGetNextResource(out var thingDef))
         {
             return;
         }
@@ -89,7 +89,7 @@ internal class Building_MountainDrill : Building
         return 9 / (float)tiles;
     }
 
-    public bool TryGetNextResource(out ThingDef resDef, out IntVec3 cell)
+    public bool TryGetNextResource(out ThingDef resDef)
     {
         for (var i = 0; i < 9; i++)
         {
@@ -131,7 +131,6 @@ internal class Building_MountainDrill : Building
             if (tileChunk != null)
             {
                 resDef = tileChunk;
-                cell = intVec;
                 currentChunk = tileChunk;
                 return true;
             }
@@ -139,7 +138,6 @@ internal class Building_MountainDrill : Building
             if (bottomChunk != null)
             {
                 resDef = bottomChunk;
-                cell = intVec;
                 currentChunk = bottomChunk;
                 return true;
             }
@@ -151,13 +149,11 @@ internal class Building_MountainDrill : Building
             }
 
             resDef = baseRes;
-            cell = intVec;
             currentChunk = baseRes;
             return true;
         }
 
         resDef = null;
-        cell = IntVec3.Invalid;
         currentChunk = null;
 
         // or add a message here? the miner should be done at this point or something broke, but there should be no new lumps...
@@ -190,12 +186,11 @@ internal class Building_MountainDrill : Building
 
     public override string GetInspectString()
     {
-        return string.Concat(new[]
-        {
+        return string.Concat([
             base.GetInspectString(),
             "Progress" /*.Translate()*/,
             ": ",
             Progress.ToStringPercent()
-        });
+        ]);
     }
 }

@@ -46,7 +46,7 @@ internal class MountainMinerMod : Mod
         listing_Standard.Gap();
         listing_Standard.Label("MM.TimeBetween".Translate(Settings.ChunkMultiplier), -1,
             "MM.TimeBetweenTooltip".Translate());
-        Settings.ChunkMultiplier = Widgets.HorizontalSlider_NewTemp(listing_Standard.GetRect(20),
+        Settings.ChunkMultiplier = Widgets.HorizontalSlider(listing_Standard.GetRect(20),
             Settings.ChunkMultiplier,
             0.1f, 10f, false, "MM.SpawnTime".Translate(), null, null, 0.1f);
         if (currentVersion != null)
