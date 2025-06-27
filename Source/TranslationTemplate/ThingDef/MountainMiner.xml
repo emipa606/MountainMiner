@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+  <!-- EN: mountain miner -->
   <ManualMountainMiner.label>mountain miner</ManualMountainMiner.label>
+  <!-- EN: a hand-operated machine used to mine out the area above the tunneling level. Allows for rock roof removal, and chunk reclamation. -->
   <ManualMountainMiner.description>a hand-operated machine used to mine out the area above the tunneling level. Allows for rock roof removal, and chunk reclamation.</ManualMountainMiner.description>
 </LanguageData>

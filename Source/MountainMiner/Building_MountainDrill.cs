@@ -35,16 +35,16 @@ internal class Building_MountainDrill : Building
 
     public void Drill(float miningPoints)
     {
-        progress += miningPoints * GetRoofFactor();
+        progress += miningPoints * getRoofFactor();
         var multiplier = LoadedModManager.GetMod<MountainMinerMod>().GetSettings<MountainMinerSettings>()
             .ChunkMultiplier;
         if (Rand.Range(0, 1000 * multiplier) < 1)
         {
-            ProduceLump();
+            produceLump();
         }
     }
 
-    public bool DrillWorkDone(Pawn driller)
+    public bool DrillWorkDone()
     {
         var intVec = Position + GenRadial.RadialPattern[currentTile];
         if (intVec.InBounds(Map) && Map.roofGrid.RoofAt(intVec) == RoofDefOf.RoofRockThick)
@@ -54,12 +54,12 @@ internal class Building_MountainDrill : Building
 
         Progress = 0f;
 
-        return !RoofPresent();
+        return !roofPresent();
     }
 
-    private void ProduceLump()
+    private void produceLump()
     {
-        if (!TryGetNextResource(out var thingDef))
+        if (!tryGetNextResource(out var thingDef))
         {
             return;
         }
@@ -68,7 +68,7 @@ internal class Building_MountainDrill : Building
         GenPlace.TryPlaceThing(thing, InteractionCell, Map, ThingPlaceMode.Near);
     }
 
-    private float GetRoofFactor()
+    private float getRoofFactor()
     {
         var tiles = 0;
         for (var i = 0; i < 9; i++)
@@ -89,7 +89,7 @@ internal class Building_MountainDrill : Building
         return 9 / (float)tiles;
     }
 
-    public bool TryGetNextResource(out ThingDef resDef)
+    private bool tryGetNextResource(out ThingDef resDef)
     {
         for (var i = 0; i < 9; i++)
         {
@@ -162,10 +162,10 @@ internal class Building_MountainDrill : Building
 
     public bool CanDrillNow()
     {
-        return (powerComp == null || powerComp.PowerOn) && RoofPresent();
+        return (powerComp == null || powerComp.PowerOn) && roofPresent();
     }
 
-    public bool RoofPresent()
+    private bool roofPresent()
     {
         for (var i = 0; i < 9; i++)
         {

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: drillup -->
+  <DrillUp.label>drillup</DrillUp.label>
+  <!-- EN: drilling -->
+  <DrillUp.gerund>drilling</DrillUp.gerund>
+  <!-- EN: drill -->
+  <DrillUp.verb>drill</DrillUp.verb>
+</LanguageData>

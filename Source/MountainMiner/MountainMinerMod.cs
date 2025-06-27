@@ -12,7 +12,7 @@ internal class MountainMinerMod : Mod
     /// <summary>
     ///     The private settings
     /// </summary>
-    public readonly MountainMinerSettings Settings;
+    private readonly MountainMinerSettings settings;
 
     /// <summary>
     ///     Constructor
@@ -22,7 +22,7 @@ internal class MountainMinerMod : Mod
     {
         currentVersion =
             VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
-        Settings = GetSettings<MountainMinerSettings>();
+        settings = GetSettings<MountainMinerSettings>();
     }
 
     /// <summary>
@@ -41,23 +41,23 @@ internal class MountainMinerMod : Mod
     /// <param name="rect"></param>
     public override void DoSettingsWindowContents(Rect rect)
     {
-        var listing_Standard = new Listing_Standard();
-        listing_Standard.Begin(rect);
-        listing_Standard.Gap();
-        listing_Standard.Label("MM.TimeBetween".Translate(Settings.ChunkMultiplier), -1,
+        var listingStandard = new Listing_Standard();
+        listingStandard.Begin(rect);
+        listingStandard.Gap();
+        listingStandard.Label("MM.TimeBetween".Translate(settings.ChunkMultiplier), -1,
             "MM.TimeBetweenTooltip".Translate());
-        Settings.ChunkMultiplier = Widgets.HorizontalSlider(listing_Standard.GetRect(20),
-            Settings.ChunkMultiplier,
+        settings.ChunkMultiplier = Widgets.HorizontalSlider(listingStandard.GetRect(20),
+            settings.ChunkMultiplier,
             0.1f, 10f, false, "MM.SpawnTime".Translate(), null, null, 0.1f);
         if (currentVersion != null)
         {
-            listing_Standard.Gap();
+            listingStandard.Gap();
             GUI.contentColor = Color.gray;
-            listing_Standard.Label("MM.CurrentModVersion".Translate(currentVersion));
+            listingStandard.Label("MM.CurrentModVersion".Translate(currentVersion));
             GUI.contentColor = Color.white;
         }
 
-        listing_Standard.End();
-        Settings.Write();
+        listingStandard.End();
+        settings.Write();
     }
 }

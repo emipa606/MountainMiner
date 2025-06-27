@@ -6,7 +6,7 @@ namespace MountainMiner;
 
 internal class JobDriver_DrillUp : JobDriver
 {
-    private const int ticks = GenDate.TicksPerDay;
+    private const int Ticks = GenDate.TicksPerDay;
     private Building_MountainDrill Comp => (Building_MountainDrill)TargetA.Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
@@ -27,7 +27,7 @@ internal class JobDriver_DrillUp : JobDriver
         mine.tickAction = delegate
         {
             var mineActor = mine.actor;
-            Comp.Drill(mineActor.GetStatValue(StatDefOf.MiningSpeed) / ticks);
+            Comp.Drill(mineActor.GetStatValue(StatDefOf.MiningSpeed) / Ticks);
             mineActor.skills?.Learn(SkillDefOf.Mining, 0.125f);
 
             if (!(Comp.Progress >= 1))
@@ -35,7 +35,7 @@ internal class JobDriver_DrillUp : JobDriver
                 return;
             }
 
-            if (!Comp.DrillWorkDone(mineActor))
+            if (!Comp.DrillWorkDone())
             {
                 return;
             }
